@@ -24,10 +24,16 @@ const chartGroup = svg.append("g")
 d3.csv("assets/data/data.csv").then(function(data) { 
   console.log(data);
 })
-// 
+// xScale
 function xScale(peopleData, "income") {
   const xLinearScale = d3.scaleLinear()
   .domain([d3.min(peopleData, d => d["income"]) * 0.8,
     d3.max(peopleData, d => d["income"]) * 1.2])
   .range([0, width]);
 }
+//yScale
+function yScale()
+
+function renderAxes
+function renderCircles
+function updateToolTip
