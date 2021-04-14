@@ -1,4 +1,3 @@
-// @TODO: YOUR CODE HERE!
 //svg container
 const svgHeight = 960
 const svgWidth = 1000
@@ -32,7 +31,9 @@ function xScale(peopleData, "income") {
   .range([0, width]);
 }
 //yScale
-function yScale()
+const yLinearScale = d3.scaleLinear()
+  .domain([0, d3.max(data, d => d.healthcare)])
+  .range([height,0]);
 
 function renderAxes
 function renderCircles
