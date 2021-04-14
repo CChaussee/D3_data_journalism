@@ -24,7 +24,7 @@ d3.csv("assets/data/data.csv").then(function(data) {
   console.log(data);
 })
 // xScale
-function xScale(peopleData, "income") {
+function xScale(peopleData, d.income) {
   const xLinearScale = d3.scaleLinear()
   .domain([d3.min(peopleData, d => d["income"]) * 0.8,
     d3.max(peopleData, d => d["income"]) * 1.2])
@@ -37,4 +37,13 @@ const yLinearScale = d3.scaleLinear()
 
 function renderAxes
 function renderCircles
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function (d) { return x(d.income;} )
+    .attr("cy", function (d) { return y(d.healthcare); } )
+    .attr("r", 12)
+    .style("fill", "blue")
 function updateToolTip
