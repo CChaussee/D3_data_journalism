@@ -19,31 +19,52 @@ const svg = d3.select("#scatter")
 // appending chartgroup
 const chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
-//reading the csv  
-d3.csv("assets/data/data.csv").then(function(data) { 
-  console.log(data);
-})
-// xScale
-function xScale(peopleData, d.income) {
-  const xLinearScale = d3.scaleLinear()
-  .domain([d3.min(peopleData, d => d["income"]) * 0.8,
-    d3.max(peopleData, d => d["income"]) * 1.2])
-  .range([0, width]);
-}
-//yScale
-const yLinearScale = d3.scaleLinear()
-  .domain([0, d3.max(data, d => d.healthcare)])
-  .range([height,0]);
+function makeGraph(peopleData) {
+  // xScale
+  xScale = d3.scaleLinear()
+  .domain([0,22])
+  .range([0, width])
+svg.append('g')
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(xScale));
+//yscale
+  yScale = d3.scaleLinear() 
+  .domain([0, 28])
+  .range([height,0])
+svg.append("g")
+  .call(d3.axisLeft(yScale));
 
-function renderAxes
-function renderCircles
+//Creating dots for scatter plot, thank you D3 graph gallery
+renderCircles =
   svg.append('g')
     .selectAll("dot")
-    .data(data)
+    .data(peopleData)
     .enter()
     .append("circle")
-    .attr("cx", function (d) { return x(d.income;} )
-    .attr("cy", function (d) { return y(d.healthcare); } )
+    .attr("cx" , xScale)
+    .attr("cy", yScale)
     .attr("r", 12)
     .style("fill", "blue")
-function updateToolTip
+
+updateToolTip =
+  d3.select("body").append("div")
+    .attr("class", "tooltip");
+
+}
+
+
+
+
+
+
+
+
+
+
+    //reading the csv  
+d3.csv("assets/data/data.csv").then(function(peopleData) { 
+  console.log(peopleData)
+  makeGraph(peopleData);
+})
+
+
