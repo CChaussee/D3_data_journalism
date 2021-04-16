@@ -17,7 +17,8 @@ const svg = d3.select("#scatter")
     .attr("height", svgHeight)
     .attr("width", svgWidth)
     .attr("transform", `translate(0, ${height})`)
-    .append("g")
+    .append("g");
+const chartGroup = svg.append("g");
     //reading the csv  
 d3.csv("assets/data/data.csv").then(function(peopleData) { 
   //testing connection
@@ -28,11 +29,9 @@ d3.csv("assets/data/data.csv").then(function(peopleData) {
 
   // xScale
   const xScale = d3.scaleLinear()
-    .domain(d3.extent(peopleData, d => d.poverty))
     .range([0, width])  
 //yscale
   const yScale = d3.scaleLinear() 
-    .domain([0, d3.max(peopleData, d => d.healthcare)])
     .range([height,0])
 // creating more variables so it is easier to label later    
   let xAxis = d3.axisBottom(xScale);
@@ -60,10 +59,23 @@ d3.csv("assets/data/data.csv").then(function(peopleData) {
   });
   xScale.domain([xMin, xMax])
   yScale.domain([yMin, yMax])
-  
+// Tool Time
+  const toolTip = d3
+        .tip()
+        .attr("class", "tooltip")
+        .offset([80, -60])
+        .html(function(data) {
+            const stateAbbr = data.state;
+            const money = +data.poverty;
+            const exercise = +data.healthcare;
+            return (
+                stateName + '<br> Poverty: ' + money + '% <br> Physically Active: ' + healthcare +'%'
+            );
+        });
+  chartGroup.call(toolTip);
+
 //Creating dots for scatter plot, thank you D3 graph gallery
-  svg.append('g')
-    .selectAll("dot")
+  chartGroup.selectAll("dot")
     .data(peopleData)
     .enter()
     .append("circle")
