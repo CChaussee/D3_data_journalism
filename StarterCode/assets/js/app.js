@@ -31,6 +31,27 @@ function makeGraph(peopleData) {
 // creating more variables so it is easier to label later    
   let xAxis = d3.axisBottom(xScale);
   let yAxis = d3.axisLeft(yScale);
+//AskBCS helped with this bit, honestly not sure what it does exactly
+  var xMin;
+  var xMax;
+  var yMin;
+  var yMax;
+
+  xMin = d3.min(peopleData, function(data) {
+    return +data.poverty * 1
+  });
+
+  xMax = d3.max(peopleData, function(data) {
+    return +data.poverty * 1
+  });
+
+  yMin = d3.max(peopleData, function(data) {
+    return +data.healthcare * 1
+  });
+
+  yMax = d3.max(peopleData, function(data) {
+    return +healthcare * 1
+  });
   chartGroup.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(xAxis);
@@ -71,6 +92,6 @@ d3.csv("assets/data/data.csv").then(function(peopleData) {
   //console.log(peopleData)
   peopleData.forEach(function(data) {
     data.healthcare = +data.healthcare;
-    data.poverty = +data.poverty;}
+    data.poverty = +data.poverty;})
   makeGraph(peopleData);
 })
