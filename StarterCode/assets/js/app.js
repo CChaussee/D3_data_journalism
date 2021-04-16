@@ -16,13 +16,19 @@ const svg = d3.select("#scatter")
     .append("svg")
     .attr("height", svgHeight)
     .attr("width", svgWidth)
-const chartGroup = svg.append("g")    
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
-// appending chartgroup
-function makeGraph(peopleData) {
+    .attr("transform", `translate(0, ${height})`)
+    .append("g")
+    //reading the csv  
+d3.csv("assets/data/data.csv").then(function(peopleData) { 
+  //testing connection
+  //console.log(peopleData)
+  peopleData.forEach(function(data) {
+    data.healthcare = +data.healthcare;
+    data.poverty = +data.poverty;})
+
   // xScale
   const xScale = d3.scaleLinear()
-    .domain(d3.extent(peopleData, d => d.poverty).reverse())
+    .domain(d3.extent(peopleData, d => d.poverty))
     .range([0, width])  
 //yscale
   const yScale = d3.scaleLinear() 
@@ -38,25 +44,22 @@ function makeGraph(peopleData) {
   var yMax;
 
   xMin = d3.min(peopleData, function(data) {
-    return +data.poverty * 1
+    return +data.poverty * 1.01
   });
 
   xMax = d3.max(peopleData, function(data) {
-    return +data.poverty * 1
+    return +data.poverty * 0.99
   });
 
   yMin = d3.max(peopleData, function(data) {
-    return +data.healthcare * 1
+    return +data.healthcare * 1.01
   });
 
   yMax = d3.max(peopleData, function(data) {
-    return +healthcare * 1
+    return +data.healthcare * 0.99
   });
-  chartGroup.append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(xAxis);
-  chartGroup.append("g")
-    .call(yAxis)
+  xScale.domain([xMin, xMax])
+  yScale.domain([yMin, yMax])
   
 //Creating dots for scatter plot, thank you D3 graph gallery
   svg.append('g')
@@ -84,14 +87,8 @@ function makeGraph(peopleData) {
     .attr("class", "axisText")
     .style("text-anchor", "middle")
     .text("In Poverty (%)");
-}   
+})   
 
-    //reading the csv  
-d3.csv("assets/data/data.csv").then(function(peopleData) { 
-  //testing connection
-  //console.log(peopleData)
-  peopleData.forEach(function(data) {
-    data.healthcare = +data.healthcare;
-    data.poverty = +data.poverty;})
+function makeGraph(peopleData) {
   makeGraph(peopleData);
-})
+}
