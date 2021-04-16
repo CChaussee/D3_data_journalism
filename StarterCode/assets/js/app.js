@@ -43,16 +43,12 @@ function makeGraph(peopleData) {
     .data(peopleData)
     .enter()
     .append("circle")
-    .attr("cx" , xScale)
-    .attr("cy", yScale)
-    .attr("r", 12)
-    .style("fill", "blue")
-    .attr("opacity", "0.5");
-// looping through data    
-  let parsing = peopleData.forEach(function(data) {
-    data.healthcare = +data.healthcare;
-    data.poverty = +data.poverty;
-  })
+      .attr("cx" , xScale)
+      .attr("cy", yScale)
+      .attr("r", 12)
+      .style("fill", "blue")
+      .attr("opacity", "0.5");
+
 // axis labels
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
@@ -67,14 +63,14 @@ function makeGraph(peopleData) {
     .attr("class", "axisText")
     .style("text-anchor", "middle")
     .text("In Poverty (%)");
-    Uncaught (in promise) TypeError: Cannot read property 'toString' of undefined
+}   
 
     //reading the csv  
 d3.csv("assets/data/data.csv").then(function(peopleData) { 
   //testing connection
   //console.log(peopleData)
-  
+  peopleData.forEach(function(data) {
+    data.healthcare = +data.healthcare;
+    data.poverty = +data.poverty;}
   makeGraph(peopleData);
 })
-
-
