@@ -52,6 +52,7 @@ function makeGraph(peopleData) {
   let parsing = peopleData.forEach(function(data) {
     data.healthcare = +data.healthcare;
     data.poverty = +data.poverty;
+  })
 // axis labels
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
@@ -66,9 +67,8 @@ function makeGraph(peopleData) {
     .attr("class", "axisText")
     .style("text-anchor", "middle")
     .text("In Poverty (%)");
+    Uncaught (in promise) TypeError: Cannot read property 'toString' of undefined
 
-})
-}
     //reading the csv  
 d3.csv("assets/data/data.csv").then(function(peopleData) { 
   //testing connection
