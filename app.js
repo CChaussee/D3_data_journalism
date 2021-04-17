@@ -20,7 +20,7 @@ const svg = d3.select("#scatter")
     .append("g");
 const chartGroup = svg.append("g");
     //reading the csv  
-d3.csv("assets/data/data.csv").then(function(peopleData) { 
+d3.csv("data.csv").then(function(peopleData) { 
   //testing connection
   //console.log(peopleData)
   peopleData.forEach(function(data) {
