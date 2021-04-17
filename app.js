@@ -6,3 +6,19 @@ const margin = 20
 const labelArea = 110;
 const bottomPad = 30;
 const leftPad = 30;
+const svg = d3.select("#scatter")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("class", "chart");
+//Axes labels
+svg.append("g").attr("class", "xText");
+const xText = d3.select(".xText");
+xText.append("text")
+  .attr("y",-26)
+  .attr("data-name","poverty")
+  .attr("data-axis","x")
+  .attr("class","aTextactivex")
+  .text("InPoverty(%)");
+svg.append("g").attr("class", "yText");
+const yText = d3.select(".yText");
