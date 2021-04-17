@@ -24,10 +24,18 @@ xText.append("text")
 svg.append("g").attr("class", "yText");
 //Have to rotate text for y axis
 const yText = d3.select(".yText")
-  .attr("transform","translate("+leftTextX+","+leftTextY+")rotate(-90)")
-  .append("text")
-  .attr("y", -26)
-  .attr("data-name", "obesity")
-  .attr("data-axis", "y")
-  .attr("class", "aText active y")
-  .text("Obese (%)")
+  .attr("transform","translate("+leftTextX+","+leftTextY+")rotate(-90)");
+  .append("text");
+  .attr("y", -26);
+  .attr("data-name", "obesity");
+  .attr("data-axis", "y");
+  .attr("class", "aText active y");
+  .text("Obese (%)");
+//reading in csv
+d3.csv("data.csv").then(function(data) {
+  makeGraph(data);
+})
+function makeGraph(theData) {
+  let repX = "poverty";
+  let repY = "obesity";
+}
