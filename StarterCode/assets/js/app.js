@@ -69,7 +69,7 @@ d3.csv("assets/data/data.csv").then(function(peopleData) {
             const money = +data.poverty;
             const exercise = +data.healthcare;
             return (
-                stateName + '<br> Poverty: ' + money + '% <br> Physically Active: ' + healthcare +'%'
+                stateAbbr + '<br> Poverty: ' + money + '% <br> Physically Active: ' + healthcare +'%'
             );
         });
   chartGroup.call(toolTip);
@@ -86,7 +86,8 @@ d3.csv("assets/data/data.csv").then(function(peopleData) {
       .attr("opacity", "0.5");
 
 // axis labels
-  chartGroup.append("text")
+  chartGroup.append("g")
+    .call(xAxis)
     .attr("transform", "rotate(-90)")
     .attr("y", 0 - margin.left + 40)
     .attr("x", 0 - (height / 2))
@@ -94,7 +95,8 @@ d3.csv("assets/data/data.csv").then(function(peopleData) {
     .attr("class", "axisText")
     .style("text-anchor", "middle")
     .text("Lacks Healthcare (%)");
-  chartGroup.append("text")
+  chartGroup.append("g")
+    .call(yAxis)
     .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
     .attr("class", "axisText")
     .style("text-anchor", "middle")
