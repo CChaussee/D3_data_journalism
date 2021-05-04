@@ -1,3 +1,5 @@
+//Thank you class activity 3.12
+
 const svgWidth = 960;
 const svgHeight = 700;
 
