@@ -127,8 +127,7 @@ d3.csv("data.csv").then(function(data) {
   // append y axis
   chartGroup.append("g")
       .call(leftAxis
-        .ticks(10)
-        .tickFormat(d3.format(",.1%")));
+        .ticks(10));
 
   // append initial circles
   let circlesGroup = chartGroup.selectAll("circle")
@@ -138,7 +137,7 @@ d3.csv("data.csv").then(function(data) {
       .attr("cx", d => xLinearScale(d[chosenXAxis]))
       .attr("cy", d => yLinearScale(d.healthcare))
       .attr("r", 10)
-      .attr("fill", "blue")
+      .attr("fill", "red")
       .attr("opacity", ".5");
 
   // Create group for  2 x- axis labels
