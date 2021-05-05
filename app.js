@@ -13,8 +13,7 @@ const margin = {
 const width = svgWidth - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
 
-// Create an SVG wrapper, append an SVG group that will hold our chart,
-// and shift the latter by left and top margins.
+// Create an SVG wrapper, append an SVG group that will hold our chart
 const svg = d3
   .select("#scatter")
   .append("svg")
@@ -52,8 +51,7 @@ function renderAxes(newXScale, xAxis) {
   return xAxis;
 }
 
-// function used for updating circles group with a transition to
-// new circles
+// function used for updating circles group
 function renderCircles(circlesGroup, newXScale, chosenXaxis) {
 
   circlesGroup.transition()
