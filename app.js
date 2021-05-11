@@ -74,7 +74,6 @@ function updateToolTip(chosenXAxis, circlesGroup) {
   const toolTip = d3.tip()
     .attr("class", "d3-tip")
     .offset([120, -10])
-    //.offset([0,5])
     .html(function(d) {
       return (`${d.state}<br>Coverage: ${parseFloat(d.healthcare*100).toFixed(1)}%<br>${label} ${d[chosenXAxis]}`);
     });
