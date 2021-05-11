@@ -135,7 +135,8 @@ d3.csv("data.csv").then(function(data) {
       .attr("cy", d => yLinearScale(d.healthcare))
       .attr("r", 10)
       .attr("fill", "red")
-      .attr("opacity", ".5");
+      .attr("opacity", ".5")
+      .attr("stroke", "black")
 
   // Create group for  2 x- axis labels
   const labelsGroup = chartGroup.append("g")
